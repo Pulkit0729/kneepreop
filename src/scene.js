@@ -42,17 +42,17 @@ export default class Scene extends EventDispatcher {
 
     this.camera.position.set(0, -700, 800);
     const loader = new STLLoader();
-    // loader.load("models/Right_Tibia.stl", (geometry) => {
-    //   const material = new THREE.MeshPhongMaterial({
-    //     color: 0xaaaaaa,
-    //     specular: 0x111111,
-    //     shininess: 200,
-    //   });
-    //   const mesh = new THREE.Mesh(geometry, material);
-    //   mesh.castShadow = true;
-    //   mesh.receiveShadow = true;
-    //   this.group.add(mesh);
-    // });
+    loader.load("models/Right_Tibia.stl", (geometry) => {
+      const material = new THREE.MeshPhongMaterial({
+        color: 0xaaaaaa,
+        specular: 0x111111,
+        shininess: 200,
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      this.group.add(mesh);
+    });
     loader.load("models/Right_Femur.stl", (geometry) => {
       const material = new THREE.MeshPhongMaterial({
         color: 0xaaaaaa,
