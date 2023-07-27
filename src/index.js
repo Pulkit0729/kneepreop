@@ -125,6 +125,7 @@ function onSubmit({ type, data }) {
   scene.anteriorLine = anteriorLine;
   scene.lateralLine = lateralLine;
 
+  scene.perpendicularPlane = perpendicularPlane;
   scene.varusPlane = varusPlane;
   varusPlane.add(lateralLine);
   scene.flexionPlane = flexionPlane;
@@ -141,6 +142,7 @@ function onSubmit({ type, data }) {
   scene.scene.add(distalLateralMeasure.line);
 
   scene.scene.add(perpendicularPlane);
+
   scene.scene.add(varusPlane);
   scene.scene.add(flexionPlane);
   scene.scene.add(distalMedialPlane);
@@ -154,13 +156,13 @@ function onSubmit({ type, data }) {
     : null;
   scene.femurModel.material.clippingPlanesNeedUpdate = true;
   scene.showAxises();
+  scene.initPlaneGui();
 }
 
 function onLandMarkClicked({ type, data }) {
-  scene.transformControl.detach(currentMarker);
-
   if (selectedLandmark && currentMarker) {
     sidebar.addMarker(selectedLandmark, currentMarker);
+    scene.transformControl.detach(currentMarker);
     currentMarker = null;
   }
   selectedLandmark = data.selectedLandmark;
@@ -169,7 +171,6 @@ function onLandMarkClicked({ type, data }) {
       scene.transformControl.attach(sidebar.markers[data.selectedLandmark]);
       currentMarker = sidebar.markers[data.selectedLandmark];
       renderWindow.addEventListener("click", onWindowClick);
-
     } else {
       renderWindow.addEventListener("click", onWindowClick);
     }
@@ -231,7 +232,6 @@ function addMarkerToScene(e) {
     currentMarker = new THREE.Mesh(markerGeometry, markerMaterial);
     currentMarker.position.copy(intersectionPoint);
     scene.transformControl.attach(currentMarker);
-    scene.ma
     scene.group.add(currentMarker);
   }
 }
@@ -259,7 +259,7 @@ function addTransformControls(renderer) {
     scene.orbitControl.enabled = !event.value;
   });
   scene.transformControl = transformControl;
-  scene.group.add(transformControl);
+  scene.scene.add(transformControl);
 }
 
 window.addEventListener("resize", onWindowResize, false);

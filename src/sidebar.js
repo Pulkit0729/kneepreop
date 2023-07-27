@@ -62,7 +62,7 @@ export class Sidebar extends THREE.EventDispatcher {
       document.getElementById("landmark_list").append(li);
     }
     document.getElementById("submit").addEventListener("click", () => {
-      if (Object.keys(this.markers).length === 5) {
+      if (Object.keys(this.markers).length === landmarks.length) {
         this.dispatchEvent({ type: "submit" });
       }
     });

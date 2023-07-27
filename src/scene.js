@@ -3,6 +3,7 @@ import { EventDispatcher } from "three";
 
 import * as THREE from "three";
 import { getNormalFromPlane, getVectorFromLine } from "./util";
+import { GUI } from "dat.gui";
 
 export default class Scene extends EventDispatcher {
   constructor() {
@@ -22,6 +23,7 @@ export default class Scene extends EventDispatcher {
     this.femurModel = null;
     this.lateralLine = null;
     this.group = new THREE.Group();
+    this.perpendicularPlane = null;
     this.varusPlane = null;
     this.flexionPlane = null;
     this.distalMedialPlane = null;
@@ -29,6 +31,7 @@ export default class Scene extends EventDispatcher {
     this.distalResectionPlaneMesh = null;
     this.measurements = [];
     this.initialize();
+    this.initGui();
   }
   initialize() {
     const ambientLight = new THREE.AmbientLight(0x404040);
@@ -68,6 +71,15 @@ export default class Scene extends EventDispatcher {
     this.scene.add(directionalLight);
     this.scene.add(directionalLight2);
     this.scene.add(this.group);
+  }
+
+  initGui() {
+    const gui = new GUI();
+
+    const cameraFolder = gui.addFolder("Camera");
+    cameraFolder.add(this.camera.position, "z", 400, 1200);
+    cameraFolder.open();
+    this.gui = gui;
   }
 
   showAxises() {
@@ -133,5 +145,23 @@ export default class Scene extends EventDispatcher {
     this.measurements.forEach((measurement) => {
       measurement.updateValue();
     });
+  }
+
+  initPlaneGui() {
+    const planeFolder = this.gui.addFolder("Planes");
+    planeFolder
+      .add(this.perpendicularPlane, "visible", false)
+      .name("Show Perpendicular Plane");
+    planeFolder.add(this.varusPlane, "visible", false).name("Show Varus Plane");
+    planeFolder
+      .add(this.flexionPlane, "visible", false)
+      .name("Show Flexion Plane");
+    planeFolder
+      .add(this.distalMedialPlane, "visible", false)
+      .name("Show Distal Medial Plane");
+    planeFolder
+      .add(this.distalResectionPlaneMesh, "visible", false)
+      .name("Show Distal Resection Plane");
+    planeFolder.open();
   }
 }
