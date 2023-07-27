@@ -1,0 +1,113 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+#app{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.annotation{
+  position: absolute;
+  color: white
+}
+.sidebar{
+  position: relative;
+  background-color: rgb(27, 31, 28);
+  color: white;
+  padding: 12px;
+}
+
+.sidebar img{
+  width: 12px;
+}
+
+.sidebar ul li{
+  display: flex;
+  gap: 12px;
+  padding: 0.5rem;
+}
+.sidebar ul li span{
+  white-space: nowrap;
+  min-width: 180px;
+}
+
+.sidebar ul li button, .rotateButton button{
+  background: none;
+  border: none;
+  color: gray;
+}
+
+.sidebar .active{
+  color: white;
+}
+
+#canvas{
+  width: 100%;
+  height: 100vh;
+}
+
+#submit{
+  margin: auto;
+  display: flex;
+  padding: 8px;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  border: none;
+}
+input{
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 50px;
+}
+.rotateButton{
+  padding: 1rem;
+}
+
+.toggle {
+  position : relative ;
+  display : inline-block;
+  width : 48px;
+  height : 24px;
+  background-color: blue;
+  border-radius: 14px;
+  border: 2px solid gray;
+}
+     
+/* After slide changes */
+.toggle:after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: gray;
+  top: 1px;
+  left: 1px;
+  transition:  all 0.5s;
+}
+     
+/* Toggle text */
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+     
+/* Checkbox checked effect */
+.checkbox:checked + .toggle::after {
+  left : 24px;
+}
+     
+/* Checkbox checked toggle label bg color */
+.checkbox:checked + .toggle {
+  background-color: green;
+}
+     
+/* Checkbox vanished */
+.checkbox {
+  display : none;
+}

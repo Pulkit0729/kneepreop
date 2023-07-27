@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Three.js Experiments</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="./src/styles.css" />
+</head>
+
+<body>
+	<div id="app">
+		<div id="sidebar_root" class="sidebar">
+			<div class="landmarks">
+				<!-- Landmarks -->
+				<h3><span>Landmarks</span></h3>
+				<div>
+					<ul id="landmark_list">
+
+					</ul>
+				</div>
+				<button id="submit">Submit</button>
+			</div>
+			<div class="rotations">
+				<div class="rotateButton">
+					<label>Varus</label>
+					<button id="varus-minus">-</button>
+					<input readonly id="varus-input">
+					<button id="varus-plus">+</button>
+				</div>
+				<div class="rotateButton">
+					<label>Flexion</label>
+					<button id="flexion-minus">-</button>
+					<input readonly id="flexion-input">
+					<button id="flexion-plus">+</button>
+				</div>
+				<div class="rotateButton">
+					<label>Distal Resection</label>
+					<button id="distal-minus">-</button>
+					<input readonly id="distal-input">
+					<button id="distal-plus">+</button>
+				</div>
+				<div class="rotateButton">
+					Resection
+					<input type="checkbox" id="toggle-resection" class="checkbox" />
+
+					<label for="toggle-resection" class="toggle">
+
+					</label>
+				</div>
+			</div>
+		</div>
+		<div id="canvas"></div>
+	</div>
+	<script type="module" src="src/index.js"></script>
+</body>
+
+</html>
